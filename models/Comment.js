@@ -8,8 +8,8 @@ const CommentSchema = new Schema({
     },
     date: { type: Date, default: Date.now },
     body: String,
-    numLikes: Number
+    numLikes: { type: Number, default: 0 }
 })
 
 const Comment = mongoose.model('Comment', CommentSchema)
-module.exports = Comment
+module.exports = { Comment , CommentSchema }

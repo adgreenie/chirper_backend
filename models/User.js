@@ -1,5 +1,6 @@
 const mongoose = require('../db/connection')
 const Schema = mongoose.Schema
+const Chirp = require('./Chirp').ChirpSchema
 
 const UserSchema = new Schema({
     username: String,
