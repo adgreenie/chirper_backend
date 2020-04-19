@@ -2,11 +2,19 @@ const Comment = require("../models/Comment").Comment
 
 const getAllComments = (req, res) => {
     Comment.find({}).then(comments => {
-        console.log(comments)
         res.json(comments)
     }).catch(err => {
         console.log(err)
         res.send("Error loading comments")
+    })
+}
+
+const getCommentsByUsername = (req, res) => {
+    Comment.find({ username: req.params.username }).then(comment => {
+        res.json(comment)
+    }).catch(err => {
+        console.log(err)
+        res.send(`Could not find comments by "${req.params.username}"`)
     })
 }
 
@@ -21,5 +29,6 @@ const getCommentById = (req, res) => {
 
 module.exports = {
     getAllComments,
+    getCommentsByUsername,
     getCommentById
 }

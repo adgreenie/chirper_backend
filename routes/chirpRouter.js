@@ -4,6 +4,8 @@ const chirpController = require("../controllers/chirpController")
 
 router.get("/", chirpController.getAllChirps)
 
-router.get("/:id", chirpController.getChirpById)
+router.get("/username/:username", chirpController.getChirpsByUsername)
+
+router.get("/id/:id", chirpController.getChirpById)
 
 module.exports = router

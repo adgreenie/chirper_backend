@@ -2,11 +2,19 @@ const Chirp = require("../models/Chirp").Chirp
 
 const getAllChirps = (req, res) => {
     Chirp.find({}).then(chirps => {
-        console.log(chirps)
         res.json(chirps)
     }).catch(err => {
         console.log(err)
         res.send("Error loading chirps")
+    })
+}
+
+const getChirpsByUsername = (req, res) => {
+    Chirp.find({ username: req.params.username }).then(chirp => {
+        res.json(chirp)
+    }).catch(err => {
+        console.log(err)
+        res.send(`Could not find chirps by "${req.params.username}"`)
     })
 }
 
@@ -21,5 +29,6 @@ const getChirpById = (req, res) => {
 
 module.exports = {
     getAllChirps,
+    getChirpsByUsername,
     getChirpById
 }
