@@ -8,7 +8,11 @@ const CommentSchema = new Schema({
     },
     date: { type: Date, default: Date.now },
     body: String,
-    numLikes: { type: Number, default: 0 }
+    numLikes: { type: Number, default: 0 },
+    chirpId: {
+        ref: "Chirp",
+        type: mongoose.Schema.Types.ObjectId
+    }
 })
 
 const Comment = mongoose.model('Comment', CommentSchema)
