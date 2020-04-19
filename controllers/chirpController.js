@@ -10,8 +10,8 @@ const getAllChirps = (req, res) => {
 }
 
 const getChirpsByUsername = (req, res) => {
-    Chirp.find({ username: req.params.username }).then(chirp => {
-        res.json(chirp)
+    Chirp.find({ username: req.params.username }).then(chirps => {
+        res.json(chirps)
     }).catch(err => {
         console.log(err)
         res.send(`Could not find chirps by "${req.params.username}"`)
@@ -23,7 +23,7 @@ const getChirpById = (req, res) => {
         res.json(chirp)
     }).catch(err => {
         console.log(err)
-        res.send(`Chirp ID: "${req.params.id}" not found`)
+        res.send(`Chirp with ID: "${req.params.id}" not found`)
     })
 }
 

@@ -10,8 +10,8 @@ const getAllComments = (req, res) => {
 }
 
 const getCommentsByUsername = (req, res) => {
-    Comment.find({ username: req.params.username }).then(comment => {
-        res.json(comment)
+    Comment.find({ username: req.params.username }).then(comments => {
+        res.json(comments)
     }).catch(err => {
         console.log(err)
         res.send(`Could not find comments by "${req.params.username}"`)
@@ -23,7 +23,7 @@ const getCommentById = (req, res) => {
         res.json(comment)
     }).catch(err => {
         console.log(err)
-        res.send(`Comment ID: "${req.params.id}" not found`)
+        res.send(`Comment with ID: "${req.params.id}" not found`)
     })
 }
 

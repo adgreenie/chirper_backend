@@ -6,19 +6,7 @@ const UserSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: String,
     image: String,
-    chirps: [
-        {
-            ref: "Chirp",
-            type: mongoose.Schema.Types.ObjectId
-        }
-    ],
-    comments: [
-        {
-            ref: "Comment",
-            type: mongoose.Schema.Types.ObjectId
-        }
-    ],
-    likes: [
+    likedChirps: [
         {
             ref: "Chirp",
             type: mongoose.Schema.Types.ObjectId
