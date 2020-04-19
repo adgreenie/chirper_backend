@@ -9,16 +9,47 @@ const getAllUsers = (req, res) => {
     })
 }
 
-const getUserById = (req, res) => {
-    User.find({ _id: req.params.id }).then(user => {
+const getUserByUsername = (req, res) => {
+    User.find({ username: req.params.username }).then(user => {
         res.json(user)
     }).catch(err => {
         console.log(err)
-        res.send(`User ID: "${req.params.id}" not found`)
+        res.send(`Username: "${req.params.id}" not found`)
+    })
+}
+
+const createUser = (req, res) => {
+    User.create(req.body).then(user => {
+        res.json(user)
+    }).catch(err => {
+        console.log(err)
+        res.send(`Error creating user`)
+    })
+}
+
+const updateUser = (req, res) => {
+    User.findOneAndUpdate({ username: req.params.username }, req.body)
+        .then(user => {
+            res.json(user)
+    }).catch(err => {
+        console.log(err)
+        res.send(`Could not update user with username: "${req.params.id}"`)
+    })
+}
+
+const deleteUser = (req, res) => {
+    User.findOneAndDelete({ username: req.params.username }).then(user => {
+        res.send(`The user "${req.params.username}" has been deleted`)
+    }).catch(err => {
+        console.log(err)
+        res.send(`Could not delete user with username: "${req.params.username}"`)
     })
 }
 
 module.exports = {
     getAllUsers,
-    getUserById
+    getUserByUsername,
+    createUser,
+    updateUser,
+    deleteUser
 }
