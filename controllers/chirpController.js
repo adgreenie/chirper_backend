@@ -1,7 +1,7 @@
-const Chirp = require("../models/Chirp")
+const Chirp = require("../models/Chirp").Chirp
 
 const getAllChirps = (req, res) => {
-    Chirp.Chirp.find({}).then(chirps => {
+    Chirp.find({}).then(chirps => {
         console.log(chirps)
         res.json(chirps)
     }).catch(err => {
@@ -10,4 +10,16 @@ const getAllChirps = (req, res) => {
     })
 }
 
-module.exports = { getAllChirps }
+const getChirpById = (req, res) => {
+    Chirp.find({ _id: req.params.id }).then(chirp => {
+        res.json(chirp)
+    }).catch(err => {
+        console.log(err)
+        res.send(`Chirp ID: "${req.params.id}" not found`)
+    })
+}
+
+module.exports = {
+    getAllChirps,
+    getChirpById
+}

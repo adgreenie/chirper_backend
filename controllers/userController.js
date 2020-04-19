@@ -10,4 +10,16 @@ const getAllUsers = (req, res) => {
     })
 }
 
-module.exports = { getAllUsers }
+const getUserById = (req, res) => {
+    User.find({ _id: req.params.id }).then(user => {
+        res.json(user)
+    }).catch(err => {
+        console.log(err)
+        res.send(`User ID: "${req.params.id}" not found`)
+    })
+}
+
+module.exports = {
+    getAllUsers,
+    getUserById
+}
