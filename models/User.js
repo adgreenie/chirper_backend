@@ -6,8 +6,18 @@ const UserSchema = new Schema({
     username: String,
     password: String,
     image: String,
-    chirps: [Chirp],
-    likes: [Chirp],
+    chirps: [
+        {
+            ref: "Chirp",
+            type: mongoose.Schema.Types.ObjectId
+        }
+    ],
+    likes: [
+        {
+            ref: "Chirp",
+            type: mongoose.Schema.Types.ObjectId
+        }
+    ],
     followers: [
         {
             ref: "User",

@@ -10,7 +10,12 @@ const ChirpSchema = new Schema({
     date: { type: Date, default: Date.now },
     body: String,
     numLikes: { type: Number, default: 0 },
-    comments: [Comment]
+    comments: [
+        {
+            ref: "Comment",
+            type: mongoose.Schema.Types.ObjectId
+        }
+    ],
 })
 
 const Chirp = mongoose.model('Chirp', ChirpSchema)
