@@ -11,9 +11,11 @@ async function seedDB() {
         password: 'password'
     })
     let chirp = await Chirp.create({
+        userId: user,
         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     })
     let comment = await Comment.create({
+        userId: user,
         body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     })
     chirp.comments.push(comment)
