@@ -1,6 +1,6 @@
 const User = require('../models/User')
-const Chirp = require('../models/Chirp').Chirp
-const Comment = require('../models/Comment').Comment
+const Chirp = require('../models/Chirp')
+const Comment = require('../models/Comment')
 const seedData = require('./seedData.js')
 
 async function seedDB() {

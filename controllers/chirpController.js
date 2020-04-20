@@ -1,4 +1,4 @@
-const Chirp = require("../models/Chirp").Chirp
+const Chirp = require("../models/Chirp")
 
 const getAllChirps = (req, res) => {
     Chirp.find({}).then(chirps => {

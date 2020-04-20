@@ -1,4 +1,5 @@
-const Comment = require("../models/Comment").Comment
+const Comment = require("../models/Comment")
+const Chirp = require("../models/Chirp")
 
 const getAllComments = (req, res) => {
     Comment.find({}).then(comments => {
@@ -46,7 +47,8 @@ const updateComment = (req, res) => {
     })
 }
 
-const deleteComment = (req, res) => {
+const deleteComment = async (req, res) => {
+    await Chirp.
     Comment.findOneAndDelete({ _id: req.params.id }).then(comment => {
         res.send(`${comment.username}'s comment "${comment.body}" has been deleted`)
     }).catch(err => {

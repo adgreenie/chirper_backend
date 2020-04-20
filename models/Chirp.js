@@ -15,4 +15,4 @@ const ChirpSchema = new Schema({
 })
 
 const Chirp = mongoose.model('Chirp', ChirpSchema)
-module.exports = { Chirp, ChirpSchema }
+module.exports = Chirp
