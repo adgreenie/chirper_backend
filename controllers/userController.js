@@ -1,4 +1,6 @@
 const User = require("../models/User")
+const Chirp = require("../models/Chirp")
+const Comment = require("../models/Comment")
 
 const getAllUsers = (req, res) => {
     User.find({}).then(users => {
@@ -37,13 +39,32 @@ const updateUser = (req, res) => {
     })
 }
 
-const deleteUser = (req, res) => {
-    User.findOneAndDelete({ username: req.params.username }).then(user => {
-        res.send(`The user "${req.params.username}" has been deleted`)
+const deleteUser = async (req, res) => {
+    const user = await User.findOne({ username: req.params.username })
+
+    const chirps = await Chirp.find({ username: user.username })
+    
+    await asyncForEach(chirps, async (chirp) => {
+        await Comment.deleteMany({ _id: { $in: chirp.comments }})
+        chirp.delete()
+    })
+
+    await Comment.deleteMany({ username: user.username })
+
+    user.delete().then(user => {
+        res.send(`The user "${user.username}" has been deleted`)
     }).catch(err => {
         console.log(err)
         res.send(`Could not delete user with username: "${req.params.username}"`)
     })
+}
+
+// asyncForEach function was derived from this article:
+// https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
+async function asyncForEach(arr, callback) {
+    for (let i = 0; i < arr.length; i++) {
+        await callback(arr[i], i , arr)
+    }
 }
 
 module.exports = {
