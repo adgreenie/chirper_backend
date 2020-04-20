@@ -48,7 +48,7 @@ const updateChirp = (req, res) => {
 
 const deleteChirp = (req, res) => {
     Chirp.findOneAndDelete({ _id: req.params.id }).then(chirp => {
-        res.send(`The chirp "${chirp.body}" has been deleted`)
+        res.send(`${chirp.username}'s chirp "${chirp.body}" has been deleted`)
     }).catch(err => {
         console.log(err)
         res.send(`Could not delete chirp with ID: "${req.params.id}"`)

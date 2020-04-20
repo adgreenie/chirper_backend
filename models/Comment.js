@@ -6,7 +6,7 @@ const CommentSchema = new Schema({
     date: { type: Date, default: Date.now },
     body: String,
     numLikes: { type: Number, default: 0 },
-    chirpId: {
+    reChirp: {
         ref: "Chirp",
         type: mongoose.Schema.Types.ObjectId
     }
