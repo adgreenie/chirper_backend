@@ -47,7 +47,7 @@ const updateComment = (req, res) => {
     })
 }
 
-const deleteComment = async (req, res) => {
+const deleteComment = (req, res) => {
     Comment.findOneAndDelete({ _id: req.params.id }).then(comment => {
         res.send(`${comment.username}'s comment "${comment.body}" has been deleted`)
     }).catch(err => {
