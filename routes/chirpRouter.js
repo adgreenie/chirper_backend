@@ -8,4 +8,10 @@ router.get("/username/:username", chirpController.getChirpsByUsername)
 
 router.get("/id/:id", chirpController.getChirpById)
 
+router.post("/", chirpController.createChirp)
+
+router.put("/:id", chirpController.updateChirp)
+
+router.delete("/:id", chirpController.deleteChirp)
+
 module.exports = router

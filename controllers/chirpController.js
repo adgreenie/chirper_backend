@@ -27,8 +27,39 @@ const getChirpById = (req, res) => {
     })
 }
 
+const createChirp = (req, res) => {
+    Chirp.create(req.body).then(chirp => {
+        res.json(chirp)
+    }).catch(err => {
+        console.log(err)
+        res.send(`Error creating chirp`)
+    })
+}
+
+const updateChirp = (req, res) => {
+    Chirp.findOneAndUpdate({ _id: req.params.id }, req.body)
+        .then(chirp => {
+            res.json(chirp)
+    }).catch(err => {
+        console.log(err)
+        res.send(`Could not update chirp with ID: "${req.params.id}"`)
+    })
+}
+
+const deleteChirp = (req, res) => {
+    Chirp.findOneAndDelete({ _id: req.params.id }).then(chirp => {
+        res.send(`The chirp "${chirp.body}" has been deleted`)
+    }).catch(err => {
+        console.log(err)
+        res.send(`Could not delete chirp with ID: "${req.params.id}"`)
+    })
+}
+
 module.exports = {
     getAllChirps,
     getChirpsByUsername,
-    getChirpById
+    getChirpById,
+    createChirp,
+    updateChirp,
+    deleteChirp
 }
