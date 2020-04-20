@@ -14,7 +14,7 @@ const getUserByUsername = (req, res) => {
         res.json(user)
     }).catch(err => {
         console.log(err)
-        res.send(`Username: "${req.params.id}" not found`)
+        res.send(`Username: "${req.params.username}" not found`)
     })
 }
 
