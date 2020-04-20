@@ -1,6 +1,7 @@
 const Comment = require("../models/Comment")
 const Chirp = require("../models/Chirp")
 
+
 const getAllComments = (req, res) => {
     Comment.find({}).then(comments => {
         res.json(comments)
@@ -47,8 +48,15 @@ const updateComment = (req, res) => {
     })
 }
 
-const deleteComment = (req, res) => {
-    Comment.findOneAndDelete({ _id: req.params.id }).then(comment => {
+const deleteComment = async (req, res) => {
+    const comment = await Comment.findOne({ _id: req.params.id })
+
+    await Chirp.findOne({ _id: comment.reChirp }).then(chirp => {
+        chirp.comments.splice(chirp.comments.indexOf(req.params.id), 1)
+        chirp.save()
+    })
+
+    comment.delete().then(comment => {
         res.send(`${comment.username}'s comment "${comment.body}" has been deleted`)
     }).catch(err => {
         console.log(err)
