@@ -39,6 +39,7 @@ const updateUser = (req, res) => {
     })
 }
 
+// deletes all Chirps by the User, Comments on those Chirps, and Comments by the User
 const deleteUser = async (req, res) => {
     const user = await User.findOne({ username: req.params.username })
 
