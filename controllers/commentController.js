@@ -21,7 +21,7 @@ const getCommentsByUsername = (req, res) => {
 }
 
 const getCommentById = (req, res) => {
-    Comment.find({ _id: req.params.id }).then(comment => {
+    Comment.findOne({ _id: req.params.id }).then(comment => {
         res.json(comment)
     }).catch(err => {
         console.log(err)

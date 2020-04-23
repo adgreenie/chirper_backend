@@ -20,7 +20,7 @@ const getChirpsByUsername = (req, res) => {
 }
 
 const getChirpById = (req, res) => {
-    Chirp.find({ _id: req.params.id }).then(chirp => {
+    Chirp.findOne({ _id: req.params.id }).then(chirp => {
         res.json(chirp)
     }).catch(err => {
         console.log(err)

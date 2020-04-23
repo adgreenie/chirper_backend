@@ -12,11 +12,20 @@ const getAllUsers = (req, res) => {
 }
 
 const getUserByUsername = (req, res) => {
-    User.find({ username: req.params.username }).then(user => {
-        res.json(user)
+    User.findOne({ username: req.params.username }).then(user => {
+        res.json(user) 
     }).catch(err => {
         console.log(err)
         res.send(`Username: "${req.params.username}" not found`)
+    })
+}
+
+const validateUser = async (req, res) => {
+    User.findOne({ username: req.body.username, password: req.body.password }).then(user => {
+        user ? res.json(true) : res.json(false)
+    }).catch(err => {
+        console.log(err)
+        res.send(`Error validating user`)
     })
 }
 
@@ -71,6 +80,7 @@ async function asyncForEach(arr, callback) {
 module.exports = {
     getAllUsers,
     getUserByUsername,
+    validateUser,
     createUser,
     updateUser,
     deleteUser

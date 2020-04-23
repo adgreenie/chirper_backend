@@ -4,7 +4,9 @@ const userController = require("../controllers/userController")
 
 router.get("/", userController.getAllUsers)
 
-router.get("/:username", userController.getUserByUsername)
+router.get("/username/:username", userController.getUserByUsername)
+
+router.get("/validate", userController.validateUser)
 
 router.post("/", userController.createUser)
 

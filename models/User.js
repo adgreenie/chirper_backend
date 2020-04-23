@@ -13,7 +13,8 @@ const UserSchema = new Schema({
         }
     ],
     followers: [String],
-    following: [String]
+    following: [String],
+    isLoggedIn: { type: Boolean, default: false }
 })
 
 UserSchema.plugin(uniqueValidator)
