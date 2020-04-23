@@ -16,7 +16,7 @@ const getUserByUsername = (req, res) => {
         res.json(user) 
     }).catch(err => {
         console.log(err)
-        res.send(`Username: "${req.params.username}" not found`)
+        res.send(`Could not retrieve user "${req.params.username}"`)
     })
 }
 
@@ -25,7 +25,7 @@ const validateUser = async (req, res) => {
         user ? res.json(true) : res.json(false)
     }).catch(err => {
         console.log(err)
-        res.send(`Error validating user`)
+        res.send("Error validating user")
     })
 }
 
@@ -34,7 +34,7 @@ const createUser = (req, res) => {
         res.json(user)
     }).catch(err => {
         console.log(err)
-        res.send(`Error creating user`)
+        res.send(`Error creating user "${req.params.username}"...this username may already be claimed`)
     })
 }
 
@@ -44,7 +44,7 @@ const updateUser = (req, res) => {
             res.json(user)
     }).catch(err => {
         console.log(err)
-        res.send(`Could not update user with username: "${req.params.id}"`)
+        res.send("Could not update user...are you trying to change username to one that's already claimed?")
     })
 }
 

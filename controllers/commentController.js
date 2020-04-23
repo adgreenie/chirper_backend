@@ -16,7 +16,7 @@ const getCommentsByUsername = (req, res) => {
         res.json(comments)
     }).catch(err => {
         console.log(err)
-        res.send(`Could not find comments by "${req.params.username}"`)
+        res.send(`Error loading comments by "${req.params.username}"`)
     })
 }
 
@@ -25,7 +25,7 @@ const getCommentById = (req, res) => {
         res.json(comment)
     }).catch(err => {
         console.log(err)
-        res.send(`Comment with ID: "${req.params.id}" not found`)
+        res.send(`Error loading comment with ID: "${req.params.id}"`)
     })
 }
 

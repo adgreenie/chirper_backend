@@ -15,7 +15,7 @@ const getChirpsByUsername = (req, res) => {
         res.json(chirps)
     }).catch(err => {
         console.log(err)
-        res.send(`Could not find chirps by "${req.params.username}"`)
+        res.send(`Error loading chirps by "${req.params.username}"`)
     })
 }
 
@@ -24,7 +24,7 @@ const getChirpById = (req, res) => {
         res.json(chirp)
     }).catch(err => {
         console.log(err)
-        res.send(`Chirp with ID: "${req.params.id}" not found`)
+        res.send(`Error loading chirp with ID: "${req.params.id}"`)
     })
 }
 
@@ -33,7 +33,7 @@ const createChirp = (req, res) => {
         res.json(chirp)
     }).catch(err => {
         console.log(err)
-        res.send(`Error creating chirp`)
+        res.send("Error creating chirp")
     })
 }
 
