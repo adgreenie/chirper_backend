@@ -34,7 +34,7 @@ const createUser = (req, res) => {
         res.json(user)
     }).catch(err => {
         console.log(err)
-        res.send(`Error creating user "${req.params.username}"...this username may already be claimed`)
+        res.send(`Error creating user "${req.body.username}"...this username may already be claimed`)
     })
 }
 
