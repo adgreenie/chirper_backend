@@ -22,7 +22,7 @@ const getUserByUsername = (req, res) => {
 
 const validateUser = async (req, res) => {
     User.findOne({ username: req.body.username, password: req.body.password }).then(user => {
-        res.json(true)
+        res.json(user)
     }).catch(err => {
         console.log(err)
         res.send("Error validating user")
